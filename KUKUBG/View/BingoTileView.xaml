@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="50" Height="50">
     <Grid Width="50" Height="50">
-        <Label Name="LabelLocation" Content="{Binding LocationString}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="10" RenderTransformOrigin="0.5,0.5">
+        <Label Name="LabelLocation" Content="{Binding LabelString}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="10" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

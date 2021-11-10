@@ -406,7 +406,7 @@ namespace KUKUBG.Model
                     {
                         case 1:
                         case 2:
-                            result.Score -= GetTileScore(tile.X, tile.Y);
+                            result.Score -= (int)(GetTileScore(tile.X, tile.Y) * 1.5);
                             break;
                     }
                 }
