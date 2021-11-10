@@ -30,9 +30,17 @@ namespace KUKUBG.ViewModel
         {
             get
             {
-                return $"Round {Round}";
+                return $"Round {Round} {IsBingoRoundString}";
             }
         }
+        /// <summary>
+        /// 빙고 라운드 여부
+        /// </summary>
+        public bool IsBingoRound => data.IsBingoRound;
+        /// <summary>
+        /// 빙고 라운드 텍스트
+        /// </summary>
+        public string IsBingoRoundString => data.IsBingoRound ? "(빙고)" : "";
         /// <summary>
         /// 다음 라운드 이동
         /// </summary>

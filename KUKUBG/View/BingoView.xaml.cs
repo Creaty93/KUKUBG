@@ -31,6 +31,7 @@ namespace KUKUBG.View
             InitializeComponent();
 
             ListBoxBingoTiles.ItemsSource = model.Tiles;
+            LabelRound.Content = model.RoundString;
         }
         private void BingoTileView_Selected(object sender, RoutedEventArgs e)
         {
@@ -43,6 +44,8 @@ namespace KUKUBG.View
                 int y = tileModel.Y;
 
                 model.SetBomb(x, y);
+
+                LabelRound.Content = model.RoundString;
             }
         }
 
