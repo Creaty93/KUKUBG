@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KUKUBG"
         xmlns:View="clr-namespace:KUKUBG.View" x:Class="KUKUBG.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="KUKUBG" Height="600" Width="600">
     <Grid>
 
         <View:BingoView/>
