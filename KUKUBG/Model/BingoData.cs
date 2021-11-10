@@ -63,7 +63,7 @@ namespace KUKUBG.Model
         }
         public bool RoundReady()
         {
-            List<TileLocation> tiles = GetTiles(1);
+            List<TileLocation> tiles = GetTiles(1, 2);
 
             return tiles.Count >= 2;
         }
