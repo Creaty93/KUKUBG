@@ -390,9 +390,13 @@ namespace KUKUBG.Model
             // 추천타일로 추천타일결과 생성
             foreach(TileLocation suggestTile in suggestTiles)
             {
+                int score = SuggestScore(this, suggestTile);
+
+                if (score <= 0) continue;
+
                 SuggestResult result = new SuggestResult();
                 result.Tile = suggestTile;
-                result.Score = SuggestScore(this, suggestTile);
+                result.Score = score;
                 result.Order = 0;
 
                 List<TileLocation> rangeTiles = GetTileDoubleLeftRightTopBotoomLocation(suggestTile.X, suggestTile.Y);
