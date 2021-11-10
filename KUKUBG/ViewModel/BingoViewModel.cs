@@ -30,7 +30,7 @@ namespace KUKUBG.ViewModel
         {
             get
             {
-                return $"Round {Round} {IsBingoRoundString}";
+                return data.RoundReady() ? $"Round {Round} {IsBingoRoundString}" : "검정타일 설정";
             }
         }
         /// <summary>
@@ -47,8 +47,6 @@ namespace KUKUBG.ViewModel
         public void NextRound()
         {
             data.NextRound();
-
-            OnPropertyChanged("Round");
             OnPropertyChanged("RoundString");
         }
         /// <summary>
@@ -120,6 +118,7 @@ namespace KUKUBG.ViewModel
                 // 준비 됬으면 추천 타일 가져옴
                 if (roundReady)
                 {
+                    OnPropertyChanged("RoundString");
                     results = data.GetSuggestResults();
                 }
             }
