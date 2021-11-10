@@ -30,7 +30,7 @@ namespace KUKUBG.ViewModel
         {
             get
             {
-                return data.RoundReady() ? $"Round {Round} {IsBingoRoundString}" : "검정타일 설정";
+                return data.RoundReady() ? $"Round {Round} {IsBingoRoundString}" : "위험타일 설정";
             }
         }
         /// <summary>
