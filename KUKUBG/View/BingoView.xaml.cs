@@ -25,23 +25,37 @@ namespace KUKUBG.View
         BingoViewModel model;
         public BingoView()
         {
-            InitializeComponent();
-
             model = new BingoViewModel();
             model.Init();
+
+            InitializeComponent();
+
             ListBoxBingoTiles.ItemsSource = model.Tiles;
         }
-        private void BingoTileView_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BingoTileView_Selected(object sender, RoutedEventArgs e)
         {
-            if (ListBoxBingoTiles.SelectedItem != null)
+            if (e.Source != null)
             {
-                BingoTileViewModel tileModel = ListBoxBingoTiles.SelectedItem as BingoTileViewModel;
+                ListBoxItem item = e.Source as ListBoxItem;
+
+                BingoTileViewModel tileModel = (BingoTileViewModel)item.DataContext;
                 int x = tileModel.X;
                 int y = tileModel.Y;
 
                 model.SetBomb(x, y);
-                ListBoxBingoTiles.SelectedItem = null;
             }
+        }
+
+        private void BingoTileView_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ListBoxBingoTiles.UnselectAll();
+        }
+
+        private void BingoTileInit(object sender, RoutedEventArgs e)
+        {
+            model.Init();
+            ListBoxBingoTiles.ItemsSource = null;
+            ListBoxBingoTiles.ItemsSource = model.Tiles;
         }
     }
 }

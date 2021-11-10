@@ -395,18 +395,22 @@ namespace KUKUBG.Model
                 result.Score = SuggestScore(this, suggestTile);
                 result.Order = 0;
 
-                int state = GetTileState(suggestTile.X, suggestTile.Y);
+                List<TileLocation> rangeTiles = GetTileLeftRightTopBotoomLocation(suggestTile.X, suggestTile.Y);
+                rangeTiles.Add(suggestTile);
 
-                switch (state)
+                foreach (TileLocation tile in rangeTiles)
                 {
-                    case 1:
-                        result.Score -= 1;
-                        break;
-                    case 2:
-                        result.Score -= 2;
-                        break;
-                }
+                    int state = GetTileState(tile.X, tile.Y);
 
+                    switch (state)
+                    {
+                        case 1:
+                        case 2:
+                            result.Score -= GetTileScore(tile.X, tile.Y);
+                            break;
+                    }
+                }
+                rangeTiles.Clear();
                 suggestResults.Add(result);
             }
             // 삭제

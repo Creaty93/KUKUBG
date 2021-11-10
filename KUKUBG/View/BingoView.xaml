@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KUKUBG.View"
+             xmlns:c="clr-namespace:KUKUBG.Model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -25,6 +26,8 @@
             </ListBox.RenderTransform>
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
+                    <EventSetter Event="Selected" Handler="BingoTileView_Selected" />
+                    <EventSetter Event="MouseUp" Handler="BingoTileView_MouseUp" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding State}" Value="0">
                             <Setter Property="Background" Value="White" />
@@ -40,9 +43,11 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <local:BingoTileView Margin="2,2,2,2" MouseUp="BingoTileView_MouseUp"/>
+                    <local:BingoTileView Margin="2,2,2,2"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Label x:Name="LabelRound" Content="{Binding Path= g, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="42,37,0,0" VerticalAlignment="Top" Height="24" Width="75"/>
+        <Button x:Name="ButtonInit" Content="초기화" HorizontalAlignment="Left" Margin="42,78,0,0" VerticalAlignment="Top" Width="75" Click="BingoTileInit"/>
     </Grid>
 </UserControl>

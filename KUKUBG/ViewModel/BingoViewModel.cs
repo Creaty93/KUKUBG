@@ -20,12 +20,20 @@ namespace KUKUBG.ViewModel
             Tiles = new List<BingoTileViewModel>();
         }
         public int Round => data.Round;
+        public string RoundString
+        {
+            get
+            {
+                return $"Round {Round}";
+            }
+        }
 
         public void NextRound()
         {
             data.NextRound();
 
             OnPropertyChanged("Round");
+            OnPropertyChanged("RoundString");
         }
         public List<BingoTileViewModel> Tiles { get; set; }
         /// <summary>
@@ -44,10 +52,14 @@ namespace KUKUBG.ViewModel
                     BingoTileViewModel tileModel = new BingoTileViewModel();
                     tileModel.X = x;
                     tileModel.Y = y;
+                    tileModel.State = 0;
+                    tileModel.IsSuggest = false;
 
                     Tiles.Add(tileModel);
                 }
             }
+
+            OnPropertyChanged("RoundString");
         }
         /// <summary>
         /// 폭탄 설정
@@ -72,7 +84,7 @@ namespace KUKUBG.ViewModel
                     data.ChangeBingo();
                 }
 
-                data.NextRound();
+                NextRound();
 
                 results = data.GetSuggestResults();
             }
