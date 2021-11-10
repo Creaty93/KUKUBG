@@ -395,7 +395,7 @@ namespace KUKUBG.Model
                 result.Score = SuggestScore(this, suggestTile);
                 result.Order = 0;
 
-                List<TileLocation> rangeTiles = GetTileLeftRightTopBotoomLocation(suggestTile.X, suggestTile.Y);
+                List<TileLocation> rangeTiles = GetTileDoubleLeftRightTopBotoomLocation(suggestTile.X, suggestTile.Y);
                 rangeTiles.Add(suggestTile);
 
                 foreach (TileLocation tile in rangeTiles)
@@ -404,9 +404,31 @@ namespace KUKUBG.Model
 
                     switch (state)
                     {
+                        case 0:
+                            if (tile.X == suggestTile.X && tile.Y == suggestTile.Y)
+                            {
+                                result.Score += 5;
+                            }
+                            break;
                         case 1:
+                            if (tile.X == suggestTile.X && tile.Y == suggestTile.Y)
+                            {
+                                result.Score -= 5;
+                            }
+                            else
+                            {
+                                result.Score -= (int)(GetTileScore(tile.X, tile.Y) * 1.2);
+                            }
+                            break;
                         case 2:
-                            result.Score -= (int)(GetTileScore(tile.X, tile.Y) * 1.5);
+                            if(tile.X == suggestTile.X && tile.Y == suggestTile.Y)
+                            {
+                                result.Score -= 10;
+                            }
+                            else
+                            {
+                                result.Score -= (int)(GetTileScore(tile.X, tile.Y) * 1.2);
+                            }
                             break;
                     }
                 }
